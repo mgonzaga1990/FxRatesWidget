@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  backend:
+    build: ./fxWidget
+    container_name: fxWidgetBackend
+    environment:
+      - API_KEY=7803e2be92cad9f941ed8d5ef56eb591
+      - EXCHANGE_URL=http://api.exchangeratesapi.io/v1/
+    ports:
+      - "8080:8080"
+    restart: always
+  frontend:
+    build: ./fxWidgetUI
+    container_name: fxWidgetUI
+    links:
+      - "backend"
+    depends_on:
+      - "backend"
+    ports:
+      - "4200:4200"
