@@ -3,6 +3,7 @@ package com.demo.widget.service;
 import com.demo.widget.model.DataModel;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.netty.util.internal.StringUtil;
+import java.security.SecureRandom;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,7 @@ public class FxWidgetService {
     public Mono<DataModel> exchange(DataModel dataModel){
         return Mono.fromSupplier(() -> {
             //here i'm just mocking the conversion rate
-            var rnd = new Random();
+            var rnd = new SecureRandom();
             var copyOfData = dataModel;
             final var newConversionAmount = new BigDecimal(rnd.nextDouble());
 
